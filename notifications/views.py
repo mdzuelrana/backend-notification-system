@@ -133,4 +133,14 @@ class NotificationStatsView(APIView):
     
 
 def home(request):
-    return JsonResponse({"message": "API is running"})
+    return JsonResponse({
+        "message": "Welcome to Notification API",
+        "docs": {
+            "swagger": "/api/docs/",
+            "redoc": "/api/redoc/"
+        },
+        "endpoints": {
+            "auth": "/api/v1/auth/",
+            "notifications": "/api/v1/notifications/"
+        }
+    })
