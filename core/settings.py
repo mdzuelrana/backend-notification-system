@@ -1,12 +1,12 @@
 import os
 from datetime import timedelta
 from decouple import config
-
+import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = config("SECRET_KEY", default="dev-secret-key-change-me")
-DEBUG = config("DEBUG", default=False, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1").split(",")
+DEBUG = False
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -59,17 +59,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": config("DB_NAME", default="notifyflow"),
+#         "USER": config("DB_USER", default="notifyflow_user"),
+#         "PASSWORD": config("DB_PASSWORD", default="notifyflow_pass"),
+#         "HOST": config("DB_HOST", default="db"),
+#         "PORT": config("DB_PORT", default="5432"),
+#     }
+# }
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME", default="notifyflow"),
-        "USER": config("DB_USER", default="notifyflow_user"),
-        "PASSWORD": config("DB_PASSWORD", default="notifyflow_pass"),
-        "HOST": config("DB_HOST", default="db"),
-        "PORT": config("DB_PORT", default="5432"),
-    }
+    "default": dj_database_url.config()
 }
-
 AUTH_USER_MODEL = "users.User"
 
 REST_FRAMEWORK = {

@@ -1,1 +1,2 @@
 [2026-05-23 15:45:13,694] INFO django.utils.autoreload autoreload:668 — Watching for file changes with StatReloader
+[2026-05-23 16:40:20,044] INFO django.utils.autoreload autoreload:266 — /app/core/settings.py changed, reloading.
