@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
-
+from django.http import JsonResponse
 from .filters import NotificationFilter
 from .models import Notification, NotificationStatus
 from .serializers import NotificationCreateSerializer, NotificationSerializer, NotificationUpdateSerializer
@@ -130,3 +130,7 @@ class NotificationStatsView(APIView):
         totals = qs.values("status").annotate(count=Count("id"))
         stats  = {row["status"]: row["count"] for row in totals}
         return Response({"success": True, "data": {"total": qs.count(), "by_status": stats}})
+    
+
+def home(request):
+    return JsonResponse({"message": "API is running"})

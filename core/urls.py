@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
-
+from notifications.views import home
 urlpatterns = [
+    path("", home),
     path("admin/", admin.site.urls),
     path("api/v1/auth/", include("users.urls", namespace="users")),
     path("api/v1/notifications/", include("notifications.urls", namespace="notifications")),
